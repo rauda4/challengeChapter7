@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rock Paper Scissors Game</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <h1>ROCK PAPER SCISSORS GAME</h1>
+    </header>
+    <div class="container">
+        <div class="score-container">
+            <span class="user">Player 1</span>
+            <span id="score"></span>
+            <span class="com">COM</span>
+        </div>
+        <div class="buttons">
+            <button id="paper" class="bn" onclick="game(this.value)" value="paper"><img src="./img/kertas.png" width="50" height="50"></button>
+            <button id="rock" class="bn" onclick="game(this.value)" value="rock"><img src="./img//batu.png" width="50" height="50"></button>
+            <button id="scissors" class="bn" onclick="game(this.value)" value="scissors"><img src="../img/gunting.png" width="50" height="50"></i></button>
+       </div>
+       <div id="challenge">
+           <div id="player1">
+               <div id="YourObject"></div>
+               <div class="who">Player 1</div>
+           </div>
+           <div id="result"><p id="who"><p></div>
+           <div id="player2">
+               <div id="ComObject"></div>
+               <div class="who">Computer</div>
+           </div>
+        </div>    
+    </div>
+    <script>
+        const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
+
+async function create(req, res) {
+  const { username } = req.body;
+  try {
+    if (username == null || username === "") {
+      return res.status(400).json({ message: "username cannot be empty !" });
+    }
+    const user = await prisma.userGame.findUnique({
+      where: {
+        username,
+      },
+    });
+    if (!user) {
+      return res
+        .status(403)
+        .json({ message: `no user ${username} in our database` });
+    }
+    const gameRoom = await prisma.gameRoom.create({
+      data: {
+        player_one: user.username,
+      },
+    });
+
+    res.status(200).json({
+      message: `game room created ! ${gameRoom.player_one} joined the game`,
+      gameRoomId: gameRoom.id,
+    });
+  } catch (error) {
+    res.send(error.message);
+  }
+}
+async function getData(req, res) {
+  try {
+    const getRoomData = await prisma.gameRoom.findMany();
+    if (getRoomData.length > 0) {
+      return res
+        .status(200)
+        .json({ message: "success get all room data", data: getRoomData });
+    }
+    res.status(200).json({ message: "room is empty !" });
+  } catch (error) {
+    Promise.reject(error.message);
+  }
+}
+
+async function getRoomById(req, res) {
+  const { roomId } = req.params;
+
+  try {
+    const getRoom = await prisma.gameRoom.findUnique({
+      where: {
+        id: roomId,
+      },
+    });
+    if (!getRoom) {
+      return res.status(400).json({ message: "room not found" });
+    }
+    res.status(200).json({ message: "success get room id", room: getRoom });
+  } catch (error) {
+    res.send(error.message);
+  }
+}
+async function joinPlayer(req, res) {
+  const { roomId } = req.params;
+  const { username } = req.body;
+  try {
+    if (username == null || username === "") {
+      return res.status(400).json({ message: "player_two cannot be empty !" });
+    }
+    if (roomId == null || roomId === "") {
+      return res.status(400).json({ message: "no room valid!" });
+    }
+    const getPlayer = await prisma.userGame.findUnique({
+      where: {
+        username,
+      },
+    });
+    if (!getPlayer) {
+      return res.status(401).json({ message: "no player or username found" });
+    }
+    const getRoom = await prisma.gameRoom.findUnique({
+      where: {
+        id: roomId,
+      },
+    });
+    if (!getRoom) {
+      return res.status(401).json({ message: "room not found" });
+    }
+    if (
+      getRoom.player_one === getPlayer.username ||
+      getRoom.player_two === getPlayer.username
+    ) {
+      return res.status(400).json({ message: "player joined !" });
+    }
+    if (getRoom.player_two) {
+      return res.status(400).json({
+        message: `room is full ${getRoom.player_two} already in the room`,
+      });
+    }
+    const updateRoom = await prisma.gameRoom.update({
+      where: {
+        id: getRoom.id,
+      },
+      data: {
+        player_two: getPlayer.username,
+      },
+    });
+
+    res.status(200).json({
+      message: `${updateRoom.player_two} joined to the room`,
+      data: updateRoom,
+    });
+  } catch (error) {
+    res.send(error.message);
+  }
+}
+
+async function remove(req, res) {
+  const { id } = req.body;
+  try {
+    const getRoomData = await prisma.gameRoom.delete({
+      where: {
+        id,
+      },
+    });
+    res.status(200).json({ message: "success delete room!" });
+  } catch (error) {
+    Promise.reject(error.message);
+  }
+}
+module.exports = { create, getData, remove, getRoomById, joinPlayer };
+    </script>
+</body>
+
+    <style>
+        html, body{
+        height: 100%;
+    }
+    body{
+        margin: 0;
+        padding: 0;
+        font-family: 'Quicksand', sans-serif;
+    }
+    header{
+        width: 100%;
+        height: 15%;
+        padding-top: 25px;
+        background-color: #9b835f;
+        box-sizing: border-box;
+    }
+    header h1{
+        text-align: center;
+        margin: 0;
+        color: #f5b142;
+    }
+    .container{
+        position: relative;
+        height: 85%;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 30px;
+        background-color: #9b835f;
+    }
+    .score-container{
+        position: relative;
+        margin: 0 auto;
+        width: 150px;
+        height: 40px;
+        color: white;
+    }
+    #score{
+        position: absolute;
+        text-align: center;
+        font-size: 30px;
+        width: 100%;
+    }
+    .user{
+        display: flex;
+        margin: 20px 0px 0px 0px;
+        transform: translate(-50%, -50%);
+        width: 280px;
+        height: 15px;
+        font-size: 24px;
+        padding: 2px 10px;
+        box-sizing: border-box;
+    }
+    .com{
+        display: flex;
+        margin: -14px 0px 0px 40px;
+        transform: translate(50%, -50%);
+        width: 280px;
+        height: 15px;
+        font-size: 24px;
+        padding: 2px 10px;
+        box-sizing: border-box;
+    }
+    .buttons{
+        display: flex;
+        flex-direction: column;
+        margin: auto 40%;
+        }
+    .bn{
+        width: 100px;
+        height: 100px;
+        margin :5px;
+        padding-top: 10px;
+        border: 1px solid;
+        border-radius: 50%;
+        color: transparent;
+        font-size: 40px;
+        background-color: transparent;
+        cursor: pointer;
+        outline: none;
+        transition: .3s;
+    }
+    .bn:hover{
+        
+        border-color: white;
+        color: white;
+    }
+    #challenge{
+        position: absolute;
+        top: 43%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 700px;
+        height: 40%;
+        display: none;
+    }
+    #you{
+        position: relative;
+        width: 37.5%;
+        font-size: 50px;
+    }
+    #com{
+        position: relative;
+        width: 37.5%;
+        font-size: 50px;
+    }
+    #YourObject{
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 110px;
+        height: 110px;
+        font-size: 50px;
+        padding-top: 20px;
+        border: 3px solid transparent;
+        border-radius: 50%;
+        color: transparent;
+        background-color: transparent;
+        box-sizing: border-box;
+        text-align: center;
+    }
+    #ComObject{
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 150px;
+        height: 110px;
+        font-size: 50px;
+        padding-top: 20px;
+        border: 3px solid transparent;
+        border-radius: 50%;
+        color: transparent;
+        background-color: transparent;
+        box-sizing: border-box;
+        text-align: center;
+    }
+    #result{
+        position: relative;
+        width: 25%;
+    }
+    #result p{
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 30px;
+        width: 100%;
+        margin: 0;
+        text-align: center;
+    }
+    .who{
+        position: absolute;
+        bottom: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        font-size: 30px;
+    }
+    .green{
+        width: 70px;
+        height: 70px;
+        margin: 5px;
+        border: 3px solid green;
+        box-shadow: 0 0 10px green;
+        border-radius: 50%;
+        color: #00fa9a;
+        font-size: 35px;
+        background-color: white;
+        cursor: pointer;
+        outline: none;
+        transition: .3s;
+    }
+    .red{
+        width: 70px;
+        height: 70px;
+        margin: 5px;
+        border: 3px solid red;
+        box-shadow: 0 0 10px red;
+        border-radius: 50%;
+        color: #00fa9a;
+        font-size: 35px;
+        background-color: white;
+        cursor: pointer;
+        outline: none;
+        transition: .3s;
+    }
+    .gray{
+        width: 70px;
+        height: 70px;
+        margin: 5px;
+        border: 3px solid #292928;
+        box-shadow: 0 0 10px #292928;
+        border-radius: 50%;
+        color: #00fa9a;
+        font-size: 35px;
+        background-color: white;
+        cursor: pointer;
+        outline: none;
+        transition: .3s;
+    }
+    </style>
+</html>

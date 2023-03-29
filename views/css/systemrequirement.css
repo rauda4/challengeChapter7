@@ -1,0 +1,76 @@
+#backgroundsystemrequirement{
+    background-image: url(./img/bgSystemRequire.png);
+    background-size: cover;
+    /* width: 1860px; */
+    width: 100vw;
+    height: 1500px;
+    margin: auto;
+}
+
+.gradient-background-system-requirement{
+    background: radial-gradient(33.26% 45% at 64.32% 47.1%, rgba(255, 255, 255, 0) 3.36%, rgba(0, 0, 0, 0) 19.22%, #080A0B 99.74%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    height: 1500px;
+}
+
+.content-system-requirement{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding-top: 200px;
+}
+
+.title-system-requirement{
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 140px;
+    letter-spacing: 2px;
+    color: #FFFFFF;
+    margin: 0px auto;
+}
+
+.desc-system-requirement{
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 70px;
+    line-height: 64px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin: 50px 0px 40px 170px;
+}
+
+table, th, td {
+    border: .5px solid gray;
+    border-collapse: collapse;
+    width: 950px;
+    height: 220px;
+    margin-left: 150px;
+}
+
+.main-title-system{
+    font-family: arial;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 62px;
+    /* identical to box height */
+    letter-spacing: 2px;
+    color: #FFB548;
+    margin-top: -50px;
+    margin-left: 20px;
+}
+
+.main-desc-system{
+    font-family: arial;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 28px;    
+    /* or 122% */
+    color: #FFFFFF;
+    margin-left: 20px;
+
+}

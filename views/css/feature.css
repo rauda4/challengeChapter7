@@ -1,0 +1,145 @@
+
+    #backgroundfeature{
+        background-image: url(./img/bgfeature.jpg);
+        background-size: cover;
+        width: 100vw;
+        /* width: 1860px; */
+        height: 1500px;
+        margin: auto;
+    }
+    
+    .gradient-feature{
+        background: radial-gradient(51.1% 80.48% at 30.85% 53.65%, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0) 19.2%, rgba(4, 5, 6, 0.520671) 47.48%, #080A0B 99.74%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+        height: 1500px;
+    }
+
+    .content-feature{
+        display: flex ;
+        justify-content: center;
+        margin: 0px 0px 0px 1370px;
+        padding-top: 300px;
+    }
+
+    .nav-title-feature{
+        color: white;
+        font-family: Arial;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 28px;
+        /* identical to box height */
+        
+        letter-spacing: 2px;
+    }
+    
+    .nav-desc-feature{
+        color: white;
+        font-family: Arial;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 56px;
+        line-height: 64px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+    }
+
+    #bodyfeature{
+        margin: 200px 0px 0px -335px;
+        list-style-type: none;
+    }
+
+    /* .border-feature{
+        border-left: solid;
+        border-color: white;
+    } */
+    @media only screen and (max-width: 1960px) {
+        .circle-1{
+            margin-top: -20px;
+        }
+
+        .circle-2{
+            margin-top: 50px;
+        }
+
+        .circle-3{
+            margin-top: -23px;
+        }
+
+        .content-feature{
+            margin: auto;
+        }
+    }
+
+    @media only screen and (min-width: 1960px) {
+        .circle-1{
+            margin-top: 0px;
+        }
+
+        .circle-2{
+            margin-top: 30px;
+        }
+
+        .circle-3{
+            margin-top: -23px;
+        }
+    }
+      
+    .circle{
+        display: flex;
+        flex-direction: column;
+        margin: -252px 0px 0px -20px;
+    }
+
+
+    .line-feature{
+        margin-top: -400px;
+    }
+
+    .title-feature{
+        font-family: Arial;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 28px;
+        letter-spacing: 2px;
+        color: #FFB548;
+        list-style: circle;
+        margin-left: 50px;
+    }
+
+    .desc-feature{
+        font-family: arial;
+        font-style: normal;
+        font-weight: 0;
+        font-size: 18px;
+        line-height: 22px;
+        /* or 122% */
+        text-align: justify;
+        color: #FFFFFF;
+        margin-left: 50px;
+    }
+
+    .title-feature2{
+        font-family: Arial;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 28px;
+        letter-spacing: 2px;
+        color: #FFB548;
+        margin-top: 70px;
+        margin-left: 50px;
+
+    }
+
+    .title-feature3{
+        font-family: Arial;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 28px;
+        letter-spacing: 2px;
+        color: #FFB548;
+        margin-top: 50px;
+        margin-left: 50px;
+    }

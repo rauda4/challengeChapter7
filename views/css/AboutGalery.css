@@ -1,0 +1,74 @@
+#AboutGalery{
+    background-image: url(./img/bgaboutgalery.jpg);
+    background-size: cover;
+    width: 100vw;
+    /* width: 1860px; */
+    height: 1500px;
+    margin: auto;
+}
+
+.gradient-aboutGalery{
+    background: radial-gradient(136.03% 54.57% at 50% 48.04%, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0) 60.63%, #080A0B 99.74%);
+    height: 1500px;
+}
+
+#about-galery{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+@media only screen and (max-width: 1373px) {
+    #about-galery{
+        display: flex;
+        flex-direction: column;
+        margin: 0px 0px 0px 30px;
+    }
+
+    .image-content{
+        margin-right: 30px ;
+        width: 94vw;
+    }   
+
+    .carousel-indicators{
+        margin: 0px 0px 0px -100px;
+    }
+
+    .image-content-about{
+        width: 100vw;
+    }
+
+}
+
+@media only screen and (min-width: 1373px) {
+
+    .image-content{
+        margin-top: 400px;
+    }   
+    
+}
+
+.text-about{
+    position: relative;
+    font-family: Arial;
+    color: white;
+    font-style: normal;
+    line-height: 50px;
+    letter-spacing: 2px;
+    margin-top: 350px;
+}
+
+.question-about{
+    font-size: 28px;
+    gap: 10px;
+}
+
+.title-about{
+    font-size: 72px;
+    font-weight: 300;
+} 
+
+.carousel-indicators{
+    gap: 30px;
+}
+

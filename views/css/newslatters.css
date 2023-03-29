@@ -1,0 +1,210 @@
+.background-newsletter{
+    background-color: #080A0B;
+    /* width: 1860px; */
+    width: 100vw;
+    height: 1500px;
+    margin: auto;
+}
+.gradient-trophy{
+    background: radial-gradient(45.43% 53.19% at 50% 50%, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0) 46.15%, #080A0B 99.74%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+}
+
+.main-newsletter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    margin-top: -100px;
+}
+
+.right-newsletter{
+    margin-top: -100px;
+}
+
+.title-newslatter{
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    /* identical to box height */
+    letter-spacing: 2px;
+    color: #FFFFFF;
+    width: 200px;
+}
+
+.desc-newslatter{
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 65px;
+    line-height: 75px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    width: 300px;
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+.text-newslatter{
+    width: 650px;
+    font-family: arial;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    /* or 122% */
+    color: #FFFFFF;
+}
+
+.title-email-newslatter{
+    font-family: arial;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: #FFFFFF;
+    mix-blend-mode: normal;
+    opacity: 0.5;
+    border-radius: 4px;
+    margin: auto 0px 0px 10px;
+}
+
+.email-newslatter{
+    font-family: arial;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    color: #FFB548;
+    margin: 5px 0px 0px 10px;
+
+}
+
+.button-newsletter{
+    display: flex;
+    gap: 20px;
+}
+
+.btn-email{
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 5px;
+    width: 300px;
+    height: 70px;
+    text-align: start;
+}
+
+.btn-subscribe{
+    background: linear-gradient(194.68deg, #FFB548 11.27%, #F3AF34 90.4%);
+    border-radius: 5px;
+    width: 300px;
+    height: 70px;
+    margin: 0px 0px 0px 0px;
+}
+
+.footer-newslatter{
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    margin: 200px 0px 30px 520px;
+    font-family: arial;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: right;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: white;
+}
+
+.text-footer-newslatter{
+    color: white;
+}
+
+
+
+.text-footer-newslatter:hover{
+    color: orange;
+    text-decoration: none;
+}
+
+.line-footer{
+    display: flex;
+    justify-content: center;
+    opacity: 0.5;
+}
+
+.copyright-footer{
+    display: flex;
+    justify-content: center;
+    margin: -80px 0px 0px 0px;
+    gap: 750px;
+}
+
+.text-information-privacy{
+    font-family: arial;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: right;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+@media only screen and (max-width: 1497px) {
+    .footer-newslatter{
+        display: flex;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        }
+
+        .copyright-footer{
+            gap: 400px;
+            
+        }
+
+}
+
+@media only screen and (max-width: 1320px) {
+
+    .main-newsletter{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .right-newsletter{
+        margin-top: 10px;
+    }
+
+    .footer-newslatter{
+        display: flex;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 30px;
+
+    }
+
+    .copyright-footer{
+        gap: 60px;
+        /* display: flex;
+        flex-direction: column; */
+    }
+
+    .text-newslatter{
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .footer-newslatter{
+        margin-top: 100px;
+        gap: 20px;
+    }
+
+   
+
+}
